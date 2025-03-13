@@ -18,7 +18,7 @@
             stroke-width: 1.5px;
         }
         .number-text {
-            font-size: 11px; /*  کوچکتر کردن فونت شماره */
+            font-size: 10px; /* **بسیار کوچکتر کردن فونت شماره** */
         }
     </style>
 </head>
@@ -131,14 +131,14 @@
         .attr("class", "spouse-node")
         .attr("transform", "translate(30, -30)")
         .append("circle")
-        .attr("r", 25); /* بزرگتر کردن دایره همسران */
+        .attr("r", 35); /* **بزرگتر کردن دایره همسران** */
 
     node.append("circle")
-        .attr("r", 25); /* بزرگتر کردن دایره اصلی */
+        .attr("r", 35); /* **بزرگتر کردن دایره اصلی** */
 
     node.append("text")
         .attr("dy", "0.31em")
-        .attr("x", function(d) { return d.children ? -28 : 28; }) /* تنظیم موقعیت متن نام */
+        .attr("x", function(d) { return d.children ? -38 : 38; }) /* تنظیم موقعیت متن نام */
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
         .text(function(d) { return d.data.name; });
 
@@ -147,7 +147,7 @@
         .select(".spouse-node")
         .append("text")
         .attr("dy", "0.31em")
-        .attr("x", 28) /* تنظیم موقعیت متن همسران */
+        .attr("x", 38) /* تنظیم موقعیت متن همسران */
         .style("text-anchor", "start")
         .text(function(d) { return d.data.spouse; });
 
@@ -156,7 +156,7 @@
         .attr("class", "number-text")
         .attr("dy", "0.35em")
         .attr("text-anchor", "middle")
-        .style("font-size", "12px")
+        .style("font-size", "10px") /* **بسیار کوچکتر کردن فونت شماره** */
         .text(function(d) { return d.data.number; });
 
     // اضافه کردن خط اتصال بین همسران و فرزندان
