@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<svg width="2500" height="2000"></svg>
+<svg width="3000" height="2500"></svg>
 
 <script>
     var svg = d3.select("svg"),
@@ -29,9 +29,9 @@
         height = +svg.attr("height");
 
     var tree = d3.tree()
-        .size([height, width - 500]); // افزایش فاصله
+        .size([height, width - 600]);
 
-    var g = svg.append("g").attr("transform", "translate(250,0)"); // افزایش فاصله
+    var g = svg.append("g").attr("transform", "translate(300,0)");
 
     var familyData = {
         "name": "عبدالله",
@@ -122,7 +122,7 @@
     // اضافه کردن دایره برای همسران
     node.filter(function(d) { return d.data.spouse; })
         .append("g")
-        .attr("transform", "translate(40, -40)") // تنظیم موقعیت همسر
+        .attr("transform", "translate(50, -50)")
         .append("circle")
         .attr("r", 10);
 
@@ -133,12 +133,12 @@
         .attr("dy", "0.31em")
         .attr("x", function(d) { return d.children ? -13 : 13; })
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-        .text(function(d) { return d.data.name; }); // حذف نمایش نام همسر در پرانتز
+        .text(function(d) { return d.data.name; });
 
     // اضافه کردن متن برای همسران
     node.filter(function(d) { return d.data.spouse; })
         .append("g")
-        .attr("transform", "translate(40, -40)") // تنظیم موقعیت همسر
+        .attr("transform", "translate(50, -50)")
         .append("text")
         .attr("dy", "0.31em")
         .attr("x", 13)
@@ -148,7 +148,7 @@
     // اضافه کردن خط اتصال بین همسران و فرزندان
     node.filter(function(d) { return d.data.spouse; })
         .append("line")
-        .attr("x1", 40)
+        .attr("x1", 50)
         .attr("y1", 0)
         .attr("x2", 0)
         .attr("y2", 0)
@@ -161,10 +161,10 @@
             if (d.parent && d.parent.data.spouse) {
                 d3.select(this.parentNode)
                     .append("line")
-                    .attr("x1", 40)
-                    .attr("y1", -40)
-                    .attr("x2", -40)
-                    .attr("y2", -40)
+                    .attr("x1", 50)
+                    .attr("y1", -50)
+                    .attr("x2", -50)
+                    .attr("y2", -50)
                     .attr("stroke", "#ccc")
                     .attr("stroke-width", 1.5);
             }
