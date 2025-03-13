@@ -9,11 +9,9 @@
             stroke: steelblue;
             stroke-width: 1.5px;
         }
-
         .node text {
             font: 10px sans-serif;
         }
-
         .link {
             fill: none;
             stroke: #ccc;
@@ -35,35 +33,95 @@
 
     var g = svg.append("g").attr("transform", "translate(40,0)");
 
-    d3.json("data.json", function(error, root) {
-        if (error) throw error;
+    // داده‌های شجره‌نامه
+    var familyData = {
+        "name": "عبدالله",
+        "children": [
+            {
+                "name": "ملیحه",
+                "children": [
+                    {
+                        "name": "علی",
+                        "children": [
+                            { "name": "هژیر" },
+                            { "name": "حمید" },
+                            { "name": "نشاط" }
+                        ]
+                    },
+                    {
+                        "name": "محمد",
+                        "children": [
+                            { "name": "راد" },
+                            { "name": "رکسانا" }
+                        ]
+                    },
+                    {
+                        "name": "ولی",
+                        "children": [
+                            { "name": "مهیار" },
+                            { "name": "رامیار" },
+                            { "name": "سانیار" }
+                        ]
+                    },
+                    {
+                        "name": "فاطمه",
+                        "children": [
+                            { "name": "فرید" },
+                            { "name": "فرشید" },
+                            { "name": "نرگس" },
+                            { "name": "شادی" }
+                        ]
+                    },
+                    {
+                        "name": "صبیعه",
+                        "children": [
+                            { "name": "اشرف" },
+                            { "name": "ارشد" },
+                            { "name": "جمال" },
+                            { "name": "فواد" },
+                            { "name": "فرناز" },
+                            { "name": "عزیزه" },
+                            { "name": "فانوزه" }
+                        ]
+                    },
+                    {
+                        "name": "هاجر",
+                        "children": [
+                            { "name": "پریسا" },
+                            { "name": "اسرا" },
+                            { "name": "نوید" }
+                        ]
+                    }
+                ]
+            }
+        ]
+    };
 
-        root = d3.hierarchy(root);
-        tree(root);
+    var root = d3.hierarchy(familyData);
+    tree(root);
 
-        var link = g.selectAll(".link")
-            .data(root.links())
-            .enter().append("path")
-            .attr("class", "link")
-            .attr("d", d3.linkHorizontal()
-                .x(function(d) { return d.y; })
-                .y(function(d) { return d.x; }));
+    var link = g.selectAll(".link")
+        .data(root.links())
+        .enter().append("path")
+        .attr("class", "link")
+        .attr("d", d3.linkHorizontal()
+            .x(function(d) { return d.y; })
+            .y(function(d) { return d.x; }));
 
-        var node = g.selectAll(".node")
-            .data(root.descendants())
-            .enter().append("g")
-            .attr("class", "node")
-            .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+    var node = g.selectAll(".node")
+        .data(root.descendants())
+        .enter().append("g")
+        .attr("class", "node")
+        .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
-        node.append("circle")
-            .attr("r", 10);
+    node.append("circle")
+        .attr("r", 10);
 
-        node.append("text")
-            .attr("dy", "0.31em")
-            .attr("x", function(d) { return d.children ? -13 : 13; })
-            .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-            .text(function(d) { return d.data.name; });
-    });
+    node.append("text")
+        .attr("dy", "0.31em")
+        .attr("x", function(d) { return d.children ? -13 : 13; })
+        .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+        .text(function(d) { return d.data.name; });
 </script>
 
 </body>
