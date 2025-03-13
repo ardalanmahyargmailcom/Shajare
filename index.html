@@ -121,8 +121,9 @@
 
     // اضافه کردن دایره برای همسران
     node.filter(function(d) { return d.data.spouse; })
+        .append("g")
+        .attr("transform", "translate(20, -20)") // تنظیم موقعیت همسر
         .append("circle")
-        .attr("cx", 20) // فاصله دایره همسر از دایره اصلی
         .attr("r", 10);
 
     node.append("circle")
@@ -132,14 +133,24 @@
         .attr("dy", "0.31em")
         .attr("x", function(d) { return d.children ? -13 : 13; })
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-        .text(function(d) { return d.data.name + (d.data.spouse ? " (" + d.data.spouse + ")" : ""); });
+        .text(function(d) { return d.data.name; }); // حذف نمایش نام همسر در پرانتز
 
-    // اضافه کردن خط اتصال بین دایره ها
+    // اضافه کردن متن برای همسران
+    node.filter(function(d) { return d.data.spouse; })
+        .append("g")
+        .attr("transform", "translate(20, -20)") // تنظیم موقعیت همسر
+        .append("text")
+        .attr("dy", "0.31em")
+        .attr("x", 13)
+        .style("text-anchor", "start")
+        .text(function(d) { return d.data.spouse; });
+
+    // اضافه کردن خط اتصال بین همسران و فرزندان
     node.filter(function(d) { return d.data.spouse; })
         .append("line")
-        .attr("x1", 10)
+        .attr("x1", 20)
         .attr("y1", 0)
-        .attr("x2", 20)
+        .attr("x2", 0)
         .attr("y2", 0)
         .attr("stroke", "#ccc")
         .attr("stroke-width", 1.5);
