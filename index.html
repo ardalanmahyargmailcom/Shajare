@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<svg width="960" height="500"></svg>
+<svg width="1200" height="800"></svg>
 
 <script>
     var svg = d3.select("svg"),
@@ -29,11 +29,10 @@
         height = +svg.attr("height");
 
     var tree = d3.tree()
-        .size([height, width - 160]);
+        .size([height, width - 200]);
 
-    var g = svg.append("g").attr("transform", "translate(40,0)");
+    var g = svg.append("g").attr("transform", "translate(100,0)");
 
-    // داده‌های شجره‌نامه
     var familyData = {
         "name": "عبدالله",
         "children": [
@@ -42,6 +41,7 @@
                 "children": [
                     {
                         "name": "علی",
+                        "spouse": "پروانه",
                         "children": [
                             { "name": "هژیر" },
                             { "name": "حمید" },
@@ -50,6 +50,7 @@
                     },
                     {
                         "name": "محمد",
+                        "spouse": "عایشه",
                         "children": [
                             { "name": "راد" },
                             { "name": "رکسانا" }
@@ -57,6 +58,7 @@
                     },
                     {
                         "name": "ولی",
+                        "spouse": "ثنایت",
                         "children": [
                             { "name": "مهیار" },
                             { "name": "رامیار" },
@@ -65,29 +67,32 @@
                     },
                     {
                         "name": "فاطمه",
+                        "spouse": "صدیق",
                         "children": [
-                            { "name": "فرید" },
-                            { "name": "فرشید" },
-                            { "name": "نرگس" },
+                            { "name": "فرید", "spouse": "ثریا", "children": [{ "name": "ژیکو" }] },
+                            { "name": "فرشید", "spouse": "غزل" },
+                            { "name": "نرگس", "spouse": "فیروز", "children": [{ "name": "لیانا" }, { "name": "الینا" }] },
                             { "name": "شادی" }
                         ]
                     },
                     {
                         "name": "صبیعه",
+                        "spouse": "عبدالله",
                         "children": [
-                            { "name": "اشرف" },
-                            { "name": "ارشد" },
-                            { "name": "جمال" },
-                            { "name": "فواد" },
-                            { "name": "فرناز" },
-                            { "name": "عزیزه" },
-                            { "name": "فانوزه" }
+                            { "name": "اشرف", "spouse": "کوهستان", "children": [{ "name": "زریان" }] },
+                            { "name": "ارشد", "spouse": "لطیفه", "children": [{ "name": "نفس" }] },
+                            { "name": "جمال", "spouse": "فاطمه", "children": [{ "name": "فرنوش" }, { "name": "عاطفه" }, { "name": "پیشوا" }, { "name": "محمد" }] },
+                            { "name": "فواد", "spouse": "اسرین", "children": [{ "name": "آریان" }] },
+                            { "name": "فرناز", "spouse": "فرید" },
+                            { "name": "عزیزه", "spouse": "اشرف", "children": [{ "name": "انیس" }, { "name": "حدیث" }, { "name": "اشکان" }] },
+                            { "name": "فانوزه", "spouse": "جمال", "children": [{ "name": "پیام" }, { "name": "پوریا", "spouse": "حمیرا", "children": [{ "name": "دلوین" }] }, { "name": "فادیه" }] }
                         ]
                     },
                     {
                         "name": "هاجر",
+                        "spouse": "مهدی",
                         "children": [
-                            { "name": "پریسا" },
+                            { "name": "پریسا", "spouse": "سیامک" },
                             { "name": "اسرا" },
                             { "name": "نوید" }
                         ]
@@ -121,7 +126,7 @@
         .attr("dy", "0.31em")
         .attr("x", function(d) { return d.children ? -13 : 13; })
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-        .text(function(d) { return d.data.name; });
+        .text(function(d) { return d.data.name + (d.data.spouse ? " (" + d.data.spouse + ")" : ""); });
 </script>
 
 </body>
