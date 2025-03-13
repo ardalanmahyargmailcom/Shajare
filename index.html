@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>شجره‌نامه خانوادگی</title>
+    <title>شجره‌نامه خانوادگی با شماره تلفن</title>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <style>
         .node circle {
@@ -16,6 +16,9 @@
             fill: none;
             stroke: #ccc;
             stroke-width: 1.5px;
+        }
+        .number-text {
+            font-size: 11px; /*  کوچکتر کردن فونت شماره */
         }
     </style>
 </head>
@@ -36,66 +39,73 @@
     var familyData = {
         "name": "عبدالله",
         "spouse": "ملیحه",
+        "number": "", /* شماره برای عبدالله وجود ندارد */
         "children": [
             {
                 "name": "علی",
                 "spouse": "پروانه",
+                "number": "09186511697",
                 "children": [
-                            { "name": "هژیر" },
-                            { "name": "حمید" },
-                            { "name": "نشاط" }
-                        ]
-                    },
-                    {
-                        "name": "محمد",
-                        "spouse": "عایشه",
-                        "children": [
-                            { "name": "راد" },
-                            { "name": "رکسانا" }
-                        ]
-                    },
-                    {
-                        "name": "ولی",
-                        "spouse": "ثنایت",
-                        "children": [
-                            { "name": "مهیار" },
-                            { "name": "رامیار" },
-                            { "name": "سانیار" }
-                        ]
-                    },
-                    {
-                        "name": "فاطمه",
-                        "spouse": "صدیق",
-                        "children": [
-                            { "name": "فرید", "spouse": "ثریا", "children": [{ "name": "ژیکو" }] },
-                            { "name": "فرشید", "spouse": "غزل" },
-                            { "name": "نرگس", "spouse": "فیروز", "children": [{ "name": "لیانا" }, { "name": "الینا" }] },
-                            { "name": "شادی" }
-                        ]
-                    },
-                    {
-                        "name": "صبیعه",
-                        "spouse": "عبدالله",
-                        "children": [
-                            { "name": "اشرف", "spouse": "کوهستان", "children": [{ "name": "زریان" }] },
-                            { "name": "ارشد", "spouse": "لطیفه", "children": [{ "name": "نفس" }] },
-                            { "name": "جمال", "spouse": "فاطمه", "children": [{ "name": "فرنوش" }, { "name": "عاطفه" }, { "name": "پیشوا" }, { "name": "محمد" }] },
-                            { "name": "فواد", "spouse": "اسرین", "children": [{ "name": "آریان" }, { "name": "آراد" }] },
-                            { "name": "فرناز", "spouse": "فرید", "children": [{ "name": "آیهان" }, { "name": "آیسان" }] },
-                            { "name": "عزیزه", "spouse": "اشرف", "children": [{ "name": "انیس" }, { "name": "حدیث" }, { "name": "اشکان" }] },
-                            { "name": "فانوزه", "spouse": "جمال", "children": [{ "name": "پیام" }, { "name": "پوریا", "spouse": "حمیرا", "children": [{ "name": "دلوین" }] }, { "name": "فادیه" }] }
-                        ]
-                    },
-                    {
-                        "name": "هاجر",
-                        "spouse": "مهدی",
-                        "children": [
-                            { "name": "پریسا", "spouse": "سیامک" },
-                            { "name": "اسرا" },
-                            { "name": "نوید" }
-                        ]
-                    }
+                    { "name": "هژیر", "number": "09933762508" },
+                    { "name": "حمید", "number": "" }, /* شماره برای حمید وجود ندارد */
+                    { "name": "نشاط", "number": "" }  /* شماره برای نشاط وجود ندارد */
                 ]
+            },
+            {
+                "name": "محمد",
+                "spouse": "عایشه",
+                "number": "", /* شماره برای محمد وجود ندارد */
+                "children": [
+                    { "name": "راد", "number": "" }, /* شماره برای راد وجود ندارد */
+                    { "name": "رکسانا", "number": "" } /* شماره برای رکسانا وجود ندارد */
+                ]
+            },
+            {
+                "name": "ولی",
+                "spouse": "ثنایت",
+                "number": "09183806858",
+                "children": [
+                    { "name": "مهیار", "number": "09389749837" },
+                    { "name": "رامیار", "number": "09376983665" },
+                    { "name": "سانیار", "number": "" } /* شماره برای سانیار وجود ندارد */
+                ]
+            },
+            {
+                "name": "فاطمه",
+                "spouse": "صدیق",
+                "number": "", /* شماره برای فاطمه وجود ندارد */
+                "children": [
+                    { "name": "فرید", "spouse": "ثریا", "number": "09183718443", "children": [{ "name": "ژیکو", "number": "" }] }, /* شماره برای ژیکو وجود ندارد */
+                    { "name": "فرشید", "spouse": "غزل", "number": "09126802475" },
+                    { "name": "نرگس", "spouse": "فیروز", "number": "09186608462", "children": [{ "name": "لیانا", "number": "" }, { "name": "الینا", "number": "" }] }, /* شماره برای لیانا و الینا وجود ندارد */
+                    { "name": "شادی", "number": "09378194412" }
+                ]
+            },
+            {
+                "name": "صبیعه",
+                "spouse": "عبدالله",
+                "number": "", /* شماره برای صبیعه و عبدالله وجود ندارد */
+                "children": [
+                    { "name": "اشرف", "spouse": "کوهستان", "number": "" , "children": [{ "name": "زریان", "number": "" }] }, /* شماره برای اشرف، کوهستان و زریان وجود ندارد */
+                    { "name": "ارشد", "spouse": "لطیفه", "number": "", "children": [{ "name": "نفس", "number": "" }] }, /* شماره برای ارشد، لطیفه و نفس وجود ندارد */
+                    { "name": "جمال", "spouse": "فاطمه", "number": "", "children": [{ "name": "فرنوش", "number": "" }, { "name": "عاطفه", "number": "" }, { "name": "پیشوا", "number": "" }, { "name": "محمد", "number": "" }] }, /* شماره برای جمال، فاطمه، فرنوش، عاطفه، پیشوا و محمد وجود ندارد */
+                    { "name": "فواد", "spouse": "اسرین", "number": "", "children": [{ "name": "آریان", "number": "" }, { "name": "آراد", "number": "" }] }, /* شماره برای فواد، اسرین، آریان و آراد وجود ندارد */
+                    { "name": "فرناز", "spouse": "فرید", "number": "", "children": [{ "name": "آیهان", "number": "" }, { "name": "آیسان", "number": "" }] }, /* شماره برای فرناز، فرید، آیهان و آیسان وجود ندارد */
+                    { "name": "عزیزه", "spouse": "اشرف", "number": "", "children": [{ "name": "انیس", "number": "" }, { "name": "حدیث", "number": "" }, { "name": "اشکان", "number": "" }] }, /* شماره برای عزیزه، اشرف، انیس، حدیث و اشکان وجود ندارد */
+                    { "name": "فانوزه", "spouse": "جمال", "number": "", "children": [{ "name": "پیام", "number": "" }, { "name": "پوریا", "spouse": "حمیرا", "number": "", "children": [{ "name": "دلوین", "number": "" }] }, { "name": "فادیه", "number": "" }] } /* شماره برای فانوزه، جمال، پیام، پوریا، حمیرا، دلوین و فادیه وجود ندارد */
+                ]
+            },
+            {
+                "name": "هاجر",
+                "spouse": "مهدی",
+                "number": "", /* شماره برای هاجر و مهدی وجود ندارد */
+                "children": [
+                    { "name": "پریسا", "spouse": "سیامک", "number": "09189737254" },
+                    { "name": "اسرا", "number": "09903899299" },
+                    { "name": "نوید", "number": "" } /* شماره برای نوید وجود ندارد */
+                ]
+            }
+        ]
     };
 
     var root = d3.hierarchy(familyData);
@@ -121,14 +131,14 @@
         .attr("class", "spouse-node")
         .attr("transform", "translate(30, -30)")
         .append("circle")
-        .attr("r", 10);
+        .attr("r", 25); /* بزرگتر کردن دایره همسران */
 
     node.append("circle")
-        .attr("r", 10);
+        .attr("r", 25); /* بزرگتر کردن دایره اصلی */
 
     node.append("text")
         .attr("dy", "0.31em")
-        .attr("x", function(d) { return d.children ? -13 : 13; })
+        .attr("x", function(d) { return d.children ? -28 : 28; }) /* تنظیم موقعیت متن نام */
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
         .text(function(d) { return d.data.name; });
 
@@ -137,9 +147,17 @@
         .select(".spouse-node")
         .append("text")
         .attr("dy", "0.31em")
-        .attr("x", 13)
+        .attr("x", 28) /* تنظیم موقعیت متن همسران */
         .style("text-anchor", "start")
         .text(function(d) { return d.data.spouse; });
+
+    // اضافه کردن متن برای شماره افراد
+    node.append("text")
+        .attr("class", "number-text")
+        .attr("dy", "0.35em")
+        .attr("text-anchor", "middle")
+        .style("font-size", "12px")
+        .text(function(d) { return d.data.number; });
 
     // اضافه کردن خط اتصال بین همسران و فرزندان
     node.filter(function(d) { return d.data.spouse; })
@@ -151,21 +169,21 @@
         .attr("stroke", "steelblue")
         .attr("stroke-width", 3);
 
-    // اضافه کردن خط اتصال بین همسران - **اصلاح شده**
+    // اضافه کردن خط اتصال بین همسران
     node.filter(function(d) { return d.data.spouse; })
         .each(function(d) {
             if (d.parent && d.parent.data.spouse) {
-                var parentSpouseNode = d.parent.descendants().find(function(descendant) { // پیدا کردن گره همسر والد با استفاده از descendants و find
+                var parentSpouseNode = d.parent.descendants().find(function(descendant) {
                     return descendant.data.spouse === d.parent.data.spouse;
                 });
 
-                if (parentSpouseNode) { //  مطمئن شدن از پیدا شدن گره همسر والد
+                if (parentSpouseNode) {
                     d3.select(this.parentNode)
                         .append("line")
                         .attr("x1", 30)
                         .attr("y1", -30)
-                        .attr("x2", parentSpouseNode.y - d.y + 30) //  محاسبه x2 با استفاده از موقعیت گره همسر والد
-                        .attr("y2", parentSpouseNode.x - d.x - 30) // محاسبه y2 با استفاده از موقعیت گره همسر والد
+                        .attr("x2", parentSpouseNode.y - d.y + 30)
+                        .attr("y2", parentSpouseNode.x - d.x - 30)
                         .attr("stroke", "#ccc")
                         .attr("stroke-width", 1.5);
                 }
