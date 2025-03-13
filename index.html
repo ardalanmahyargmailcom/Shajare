@@ -118,8 +118,8 @@
     // اضافه کردن دایره برای همسران
     node.filter(function(d) { return d.data.spouse; })
         .append("g")
-        .attr("class", "spouse-node") // کلاس جدید برای گره همسران
-        .attr("transform", "translate(30, -30)") // موقعیت دایره همسران کمی تغییر کرد
+        .attr("class", "spouse-node")
+        .attr("transform", "translate(30, -30)")
         .append("circle")
         .attr("r", 10);
 
@@ -134,7 +134,7 @@
 
     // اضافه کردن متن برای همسران
     node.filter(function(d) { return d.data.spouse; })
-        .select(".spouse-node") // انتخاب گره همسران با کلاس جدید
+        .select(".spouse-node")
         .append("text")
         .attr("dy", "0.31em")
         .attr("x", 13)
@@ -144,24 +144,34 @@
     // اضافه کردن خط اتصال بین همسران و فرزندان
     node.filter(function(d) { return d.data.spouse; })
         .append("line")
-        .attr("x1", 30) //  مبدا خط از مرکز دایره همسران
-        .attr("y1", -30) // مبدا خط از مرکز دایره همسران
+        .attr("x1", 30)
+        .attr("y1", -30)
         .attr("x2", 0)
         .attr("y2", 0)
         .attr("stroke", "steelblue")
         .attr("stroke-width", 3);
 
-    // اضافه کردن خط اتصال بین همسران - **اصلاح در اینجا**
+    // اضافه کردن خط اتصال بین همسران - **اصلاح شده**
     node.filter(function(d) { return d.data.spouse; })
         .each(function(d) {
             if (d.parent && d.parent.data.spouse) {
-                d3.select(this.parentNode)
-                    .append("line")
-                    .attr("x1", 30) // مبدا خط از مرکز دایره همسران
-                    .attr("y1", -30) // مبدا خط از مرکز دایره همسران
-                    .attr("x2", function() { // محاسبه انتهای خط به صورت پویا
-                        var parentSpouseNode = d3.select(this.parentNode.parentNode).select(".spouse-node"); // پیدا کردن گره همسر والد
-                        return parentSpouseNode.attr("transform").match(/translate\((.*?)\,/)[1]; //  گرفتن مقدار x ترانسفورم گره همسر والد
-                    })
-                    .attr("y2", function() { // محاسبه انتهای خط به صورت پویا
-                        var parentSpouseNode = d3.select(this.parentNode.parentNode).select(".
+                var parentSpouseNode = d.parent.descendants().find(function(descendant) { // پیدا کردن گره همسر والد با استفاده از descendants و find
+                    return descendant.data.spouse === d.parent.data.spouse;
+                });
+
+                if (parentSpouseNode) { //  مطمئن شدن از پیدا شدن گره همسر والد
+                    d3.select(this.parentNode)
+                        .append("line")
+                        .attr("x1", 30)
+                        .attr("y1", -30)
+                        .attr("x2", parentSpouseNode.y - d.y + 30) //  محاسبه x2 با استفاده از موقعیت گره همسر والد
+                        .attr("y2", parentSpouseNode.x - d.x - 30) // محاسبه y2 با استفاده از موقعیت گره همسر والد
+                        .attr("stroke", "#ccc")
+                        .attr("stroke-width", 1.5);
+                }
+            }
+        });
+</script>
+
+</body>
+</html>
