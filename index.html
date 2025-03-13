@@ -119,6 +119,12 @@
         .attr("class", "node")
         .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
+    // اضافه کردن دایره برای همسران
+    node.filter(function(d) { return d.data.spouse; })
+        .append("circle")
+        .attr("cx", 20) // فاصله دایره همسر از دایره اصلی
+        .attr("r", 10);
+
     node.append("circle")
         .attr("r", 10);
 
@@ -127,6 +133,16 @@
         .attr("x", function(d) { return d.children ? -13 : 13; })
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
         .text(function(d) { return d.data.name + (d.data.spouse ? " (" + d.data.spouse + ")" : ""); });
+
+    // اضافه کردن خط اتصال بین دایره ها
+    node.filter(function(d) { return d.data.spouse; })
+        .append("line")
+        .attr("x1", 10)
+        .attr("y1", 0)
+        .attr("x2", 20)
+        .attr("y2", 0)
+        .attr("stroke", "#ccc")
+        .attr("stroke-width", 1.5);
 </script>
 
 </body>
