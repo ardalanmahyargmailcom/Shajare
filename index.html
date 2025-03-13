@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>شجره‌نامه خانوادگی با شماره تلفن</title>
+    <title>شجره‌نامه خانوادگی</title>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <style>
         .node circle {
@@ -17,93 +17,85 @@
             stroke: #ccc;
             stroke-width: 1.5px;
         }
-        .number-text {
-            font-size: 10px;
-        }
     </style>
 </head>
 <body>
 
-<svg width="5000" height="4000"></svg>  <script>
+<svg width="3500" height="3000"></svg>
+
+<script>
     var svg = d3.select("svg"),
         width = +svg.attr("width"),
         height = +svg.attr("height");
 
     var tree = d3.tree()
-        .size([height * 2, width - 600]); // **افزایش بیشتر ارتفاع و عرض فضای درخت**
+        .size([height, width - 700]);
 
-    var g = svg.append("g").attr("transform", "translate(700, 100)"); // **تغییر بیشتر translate برای جابجایی نمودار**
+    var g = svg.append("g").attr("transform", "translate(350,0)");
 
     var familyData = {
         "name": "عبدالله",
         "spouse": "ملیحه",
-        "number": "",
         "children": [
             {
                 "name": "علی",
                 "spouse": "پروانه",
-                "number": "09186511697",
                 "children": [
-                    { "name": "هژیر", "number": "09933762508" },
-                    { "name": "حمید", "number": "" },
-                    { "name": "نشاط", "number": "" }
+                            { "name": "هژیر" },
+                            { "name": "حمید" },
+                            { "name": "نشاط" }
+                        ]
+                    },
+                    {
+                        "name": "محمد",
+                        "spouse": "عایشه",
+                        "children": [
+                            { "name": "راد" },
+                            { "name": "رکسانا" }
+                        ]
+                    },
+                    {
+                        "name": "ولی",
+                        "spouse": "ثنایت",
+                        "children": [
+                            { "name": "مهیار" },
+                            { "name": "رامیار" },
+                            { "name": "سانیار" }
+                        ]
+                    },
+                    {
+                        "name": "فاطمه",
+                        "spouse": "صدیق",
+                        "children": [
+                            { "name": "فرید", "spouse": "ثریا", "children": [{ "name": "ژیکو" }] },
+                            { "name": "فرشید", "spouse": "غزل" },
+                            { "name": "نرگس", "spouse": "فیروز", "children": [{ "name": "لیانا" }, { "name": "الینا" }] },
+                            { "name": "شادی" }
+                        ]
+                    },
+                    {
+                        "name": "صبیعه",
+                        "spouse": "عبدالله",
+                        "children": [
+                            { "name": "اشرف", "spouse": "کوهستان", "children": [{ "name": "زریان" }] },
+                            { "name": "ارشد", "spouse": "لطیفه", "children": [{ "name": "نفس" }] },
+                            { "name": "جمال", "spouse": "فاطمه", "children": [{ "name": "فرنوش" }, { "name": "عاطفه" }, { "name": "پیشوا" }, { "name": "محمد" }] },
+                            { "name": "فواد", "spouse": "اسرین", "children": [{ "name": "آریان" }, { "name": "آراد" }] },
+                            { "name": "فرناز", "spouse": "فرید", "children": [{ "name": "آیهان" }, { "name": "آیسان" }] },
+                            { "name": "عزیزه", "spouse": "اشرف", "children": [{ "name": "انیس" }, { "name": "حدیث" }, { "name": "اشکان" }] },
+                            { "name": "فانوزه", "spouse": "جمال", "children": [{ "name": "پیام" }, { "name": "پوریا", "spouse": "حمیرا", "children": [{ "name": "دلوین" }] }, { "name": "فادیه" }] }
+                        ]
+                    },
+                    {
+                        "name": "هاجر",
+                        "spouse": "مهدی",
+                        "children": [
+                            { "name": "پریسا", "spouse": "سیامک" },
+                            { "name": "اسرا" },
+                            { "name": "نوید" }
+                        ]
+                    }
                 ]
-            },
-            {
-                "name": "محمد",
-                "spouse": "عایشه",
-                "number": "",
-                "children": [
-                    { "name": "راد", "number": "" },
-                    { "name": "رکسانا", "number": "" }
-                ]
-            },
-            {
-                "name": "ولی",
-                "spouse": "ثنایت",
-                "number": "09183806858",
-                "children": [
-                    { "name": "مهیار", "number": "09389749837" },
-                    { "name": "رامیار", "number": "09376983665" },
-                    { "name": "سانیار", "number": "" }
-                ]
-            },
-            {
-                "name": "فاطمه",
-                "spouse": "صدیق",
-                "number": "",
-                "children": [
-                    { "name": "فرید", "spouse": "ثریا", "number": "09183718443", "children": [{ "name": "ژیکو", "number": "" }] },
-                    { "name": "فرشید", "spouse": "غزل", "number": "09126802475" },
-                    { "name": "نرگس", "spouse": "فیروز", "number": "09186608462", "children": [{ "name": "لیانا", "number": "" }, { "name": "الینا", "number": "" }] },
-                    { "name": "شادی", "number": "09378194412" }
-                ]
-            },
-            {
-                "name": "صبیعه",
-                "spouse": "عبدالله",
-                "number": "",
-                "children": [
-                    { "name": "اشرف", "spouse": "کوهستان", "number": "" , "children": [{ "name": "زریان", "number": "" }] },
-                    { "name": "ارشد", "spouse": "لطیفه", "number": "", "children": [{ "name": "نفس", "number": "" }] },
-                    { "name": "جمال", "spouse": "فاطمه", "number": "", "children": [{ "name": "فرنوش", "number": "" }, { "name": "عاطفه", "number": "" }, { "name": "پیشوا", "number": "" }, { "name": "محمد", "number": "" }] },
-                    { "name": "فواد", "spouse": "اسرین", "number": "", "children": [{ "name": "آریان", "number": "" }, { "name": "آراد", "number": "" }] },
-                    { "name": "فرناز", "spouse": "فرید", "number": "", "children": [{ "name": "آیهان", "number": "" }, { "name": "آیسان", "number": "" }] },
-                    { "name": "عزیزه", "spouse": "اشرف", "number": "", "children": [{ "name": "انیس", "number": "" }, { "name": "حدیث", "number": "" }, { "name": "اشکان", "number": "" }] },
-                    { "name": "فانوزه", "spouse": "جمال", "number": "", "children": [{ "name": "پیام", "number": "" }, { "name": "پوریا", "spouse": "حمیرا", "number": "", "children": [{ "name": "دلوین", "number": "" }] }, { "name": "فادیه", "number": "" }] }
-                ]
-            },
-            {
-                "name": "هاجر",
-                "spouse": "مهدی",
-                "number": "",
-                "children": [
-                    { "name": "پریسا", "spouse": "سیامک", "number": "09189737254" },
-                    { "name": "اسرا", "number": "09903899299" },
-                    { "name": "نوید", "number": "" }
-                ]
-            }
-        ]
     };
 
     var root = d3.hierarchy(familyData);
@@ -129,14 +121,14 @@
         .attr("class", "spouse-node")
         .attr("transform", "translate(30, -30)")
         .append("circle")
-        .attr("r", 35);
+        .attr("r", 10);
 
     node.append("circle")
-        .attr("r", 35);
+        .attr("r", 10);
 
     node.append("text")
         .attr("dy", "0.31em")
-        .attr("x", function(d) { return d.children ? -38 : 38; })
+        .attr("x", function(d) { return d.children ? -13 : 13; })
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
         .text(function(d) { return d.data.name; });
 
@@ -145,17 +137,9 @@
         .select(".spouse-node")
         .append("text")
         .attr("dy", "0.31em")
-        .attr("x", 38)
+        .attr("x", 13)
         .style("text-anchor", "start")
         .text(function(d) { return d.data.spouse; });
-
-    // اضافه کردن متن برای شماره افراد
-    node.append("text")
-        .attr("class", "number-text")
-        .attr("dy", "0.35em")
-        .attr("text-anchor", "middle")
-        .style("font-size", "10px")
-        .text(function(d) { return d.data.number; });
 
     // اضافه کردن خط اتصال بین همسران و فرزندان
     node.filter(function(d) { return d.data.spouse; })
@@ -167,21 +151,21 @@
         .attr("stroke", "steelblue")
         .attr("stroke-width", 3);
 
-    // اضافه کردن خط اتصال بین همسران
+    // اضافه کردن خط اتصال بین همسران - **اصلاح شده**
     node.filter(function(d) { return d.data.spouse; })
         .each(function(d) {
             if (d.parent && d.parent.data.spouse) {
-                var parentSpouseNode = d.parent.descendants().find(function(descendant) {
+                var parentSpouseNode = d.parent.descendants().find(function(descendant) { // پیدا کردن گره همسر والد با استفاده از descendants و find
                     return descendant.data.spouse === d.parent.data.spouse;
                 });
 
-                if (parentSpouseNode) {
+                if (parentSpouseNode) { //  مطمئن شدن از پیدا شدن گره همسر والد
                     d3.select(this.parentNode)
                         .append("line")
                         .attr("x1", 30)
                         .attr("y1", -30)
-                        .attr("x2", parentSpouseNode.y - d.y + 30)
-                        .attr("y2", parentSpouseNode.x - d.x - 30)
+                        .attr("x2", parentSpouseNode.y - d.y + 30) //  محاسبه x2 با استفاده از موقعیت گره همسر والد
+                        .attr("y2", parentSpouseNode.x - d.x - 30) // محاسبه y2 با استفاده از موقعیت گره همسر والد
                         .attr("stroke", "#ccc")
                         .attr("stroke-width", 1.5);
                 }
