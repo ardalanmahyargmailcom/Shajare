@@ -24,17 +24,15 @@
 </head>
 <body>
 
-<svg width="3500" height="3000"></svg>
-
-<script>
+<svg width="4000" height="3500"></svg>  <script>
     var svg = d3.select("svg"),
         width = +svg.attr("width"),
         height = +svg.attr("height");
 
     var tree = d3.tree()
-        .size([height * 1.7, width - 500]); // **افزایش ارتفاع و عرض فضای درخت**
+        .size([height * 1.7, width - 500]);
 
-    var g = svg.append("g").attr("transform", "translate(350,0)");
+    var g = svg.append("g").attr("transform", "translate(500, 50)"); // **تغییر translate برای جابجایی نمودار**
 
     var familyData = {
         "name": "عبدالله",
