@@ -43,11 +43,10 @@
                         "name": "علی",
                         "spouse": "پروانه",
                         "children": [
-                            { "name": "هژیر", "phone": "09933762508" },
+                            { "name": "هژیر" },
                             { "name": "حمید" },
                             { "name": "نشاط" }
-                        ],
-                        "phone":"09186511697"
+                        ]
                     },
                     {
                         "name": "محمد",
@@ -61,22 +60,20 @@
                         "name": "ولی",
                         "spouse": "ثنایت",
                         "children": [
-                            { "name": "مهیار", "phone": "09389749837" },
-                            { "name": "رامیار", "phone": "09376983665" },
+                            { "name": "مهیار" },
+                            { "name": "رامیار" },
                             { "name": "سانیار" }
-                        ],
-                        "phone":"09183806858",
-                        "spousePhone":"09186526358"
+                        ]
                     },
                     {
                         "name": "فاطمه",
                         "spouse": "صدیق",
                         "children": [
-                            { "name": "فرید", "spouse": "ثریا", "children": [{ "name": "ژیکو" }], "phone": "09183718443", "spousePhone":"09189992633" },
-                            { "name": "فرشید", "spouse": "غزل", "phone": "09126802475", "spousePhone": "09940572599" },
-                            { "name": "نرگس", "spouse": "فیروز", "children": [{ "name": "لیانا" }, { "name": "الینا" }], "phone": "09186608462", "spousePhone": "09186576279" },
-                            { "name": "شادی", "phone": "09378194412" }
-                        ],
+                            { "name": "فرید", "spouse": "ثریا", "children": [{ "name": "ژیکو" }] },
+                            { "name": "فرشید", "spouse": "غزل" },
+                            { "name": "نرگس", "spouse": "فیروز", "children": [{ "name": "لیانا" }, { "name": "الینا" }] },
+                            { "name": "شادی" }
+                        ]
                     },
                     {
                         "name": "صبیعه",
@@ -95,8 +92,8 @@
                         "name": "هاجر",
                         "spouse": "مهدی",
                         "children": [
-                            { "name": "پریسا", "spouse": "سیامک", "phone": "09189737254" },
-                            { "name": "اسرا", "phone": "09903899299" },
+                            { "name": "پریسا", "spouse": "سیامک" },
+                            { "name": "اسرا" },
                             { "name": "نوید" }
                         ]
                     }
@@ -129,16 +126,11 @@
         .append("circle")
         .attr("r", 10);
 
-        // اضافه کردن دایره و شماره تلفن برای افراد
     node.append("circle")
-        .attr("r", function(d) { return d.data.phone ? 20 : 10; }) // بزرگ کردن دایره در صورت وجود شماره
-        .append("text")
-        .attr("dy", "0.31em")
-        .style("text-anchor", "middle")
-        .text(function(d) { return d.data.phone ? d.data.phone : ""; }); // نمایش شماره در صورت وجود
+        .attr("r", 10);
 
     node.append("text")
-        .attr("dy", function(d) { return d.data.phone ? "1.5em" : "0.31em"; }) // جابجایی متن نام در صورت وجود شماره
+        .attr("dy", "0.31em")
         .attr("x", function(d) { return d.children ? -13 : 13; })
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
         .text(function(d) { return d.data.name; });
@@ -153,11 +145,31 @@
         .style("text-anchor", "start")
         .text(function(d) { return d.data.spouse; });
 
-        // اضافه کردن متن برای شماره تلفن همسران
+    // اضافه کردن خط اتصال بین همسران و فرزندان
     node.filter(function(d) { return d.data.spouse; })
-        .append("g")
-        .attr("transform", "translate(60, -60)")
-        .append("text")
-        .attr("dy", "1.5em")
-        .attr("x", 13)
-        .
+        .append("line")
+        .attr("x1", 60)
+        .attr("y1", 0)
+        .attr("x2", 0)
+        .attr("y2", 0)
+        .attr("stroke", "#ccc")
+        .attr("stroke-width", 1.5);
+
+    // اضافه کردن خط اتصال بین همسران
+    node.filter(function(d) { return d.data.spouse; })
+        .each(function(d) {
+            if (d.parent && d.parent.data.spouse) {
+                d3.select(this.parentNode)
+                    .append("line")
+                    .attr("x1", 60)
+                    .attr("y1", -60)
+                    .attr("x2", -60)
+                    .attr("y2", -60)
+                    .attr("stroke", "#ccc")
+                    .attr("stroke-width", 1.5);
+            }
+        });
+</script>
+
+</body>
+</html>
