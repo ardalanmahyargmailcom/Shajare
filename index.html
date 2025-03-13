@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<svg width="1200" height="800"></svg>
+<svg width="1500" height="1000"></svg>
 
 <script>
     var svg = d3.select("svg"),
@@ -29,9 +29,9 @@
         height = +svg.attr("height");
 
     var tree = d3.tree()
-        .size([height, width - 200]);
+        .size([height, width - 300]); // افزایش فاصله
 
-    var g = svg.append("g").attr("transform", "translate(100,0)");
+    var g = svg.append("g").attr("transform", "translate(150,0)"); // افزایش فاصله
 
     var familyData = {
         "name": "عبدالله",
@@ -154,6 +154,21 @@
         .attr("y2", 0)
         .attr("stroke", "#ccc")
         .attr("stroke-width", 1.5);
+
+    // اضافه کردن خط اتصال بین همسران
+    node.filter(function(d) { return d.data.spouse; })
+        .each(function(d) {
+            if (d.parent && d.parent.data.spouse) {
+                d3.select(this.parentNode)
+                    .append("line")
+                    .attr("x1", 20)
+                    .attr("y1", -20)
+                    .attr("x2", -20)
+                    .attr("y2", -20)
+                    .attr("stroke", "#ccc")
+                    .attr("stroke-width", 1.5);
+            }
+        });
 </script>
 
 </body>
