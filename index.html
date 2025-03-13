@@ -18,7 +18,7 @@
             stroke-width: 1.5px;
         }
         .number-text {
-            font-size: 10px; /* **بسیار کوچکتر کردن فونت شماره** */
+            font-size: 10px;
         }
     </style>
 </head>
@@ -32,14 +32,14 @@
         height = +svg.attr("height");
 
     var tree = d3.tree()
-        .size([height, width - 700]);
+        .size([height * 1.7, width - 500]); // **افزایش ارتفاع و عرض فضای درخت**
 
     var g = svg.append("g").attr("transform", "translate(350,0)");
 
     var familyData = {
         "name": "عبدالله",
         "spouse": "ملیحه",
-        "number": "", /* شماره برای عبدالله وجود ندارد */
+        "number": "",
         "children": [
             {
                 "name": "علی",
@@ -47,17 +47,17 @@
                 "number": "09186511697",
                 "children": [
                     { "name": "هژیر", "number": "09933762508" },
-                    { "name": "حمید", "number": "" }, /* شماره برای حمید وجود ندارد */
-                    { "name": "نشاط", "number": "" }  /* شماره برای نشاط وجود ندارد */
+                    { "name": "حمید", "number": "" },
+                    { "name": "نشاط", "number": "" }
                 ]
             },
             {
                 "name": "محمد",
                 "spouse": "عایشه",
-                "number": "", /* شماره برای محمد وجود ندارد */
+                "number": "",
                 "children": [
-                    { "name": "راد", "number": "" }, /* شماره برای راد وجود ندارد */
-                    { "name": "رکسانا", "number": "" } /* شماره برای رکسانا وجود ندارد */
+                    { "name": "راد", "number": "" },
+                    { "name": "رکسانا", "number": "" }
                 ]
             },
             {
@@ -67,42 +67,42 @@
                 "children": [
                     { "name": "مهیار", "number": "09389749837" },
                     { "name": "رامیار", "number": "09376983665" },
-                    { "name": "سانیار", "number": "" } /* شماره برای سانیار وجود ندارد */
+                    { "name": "سانیار", "number": "" }
                 ]
             },
             {
                 "name": "فاطمه",
                 "spouse": "صدیق",
-                "number": "", /* شماره برای فاطمه وجود ندارد */
+                "number": "",
                 "children": [
-                    { "name": "فرید", "spouse": "ثریا", "number": "09183718443", "children": [{ "name": "ژیکو", "number": "" }] }, /* شماره برای ژیکو وجود ندارد */
+                    { "name": "فرید", "spouse": "ثریا", "number": "09183718443", "children": [{ "name": "ژیکو", "number": "" }] },
                     { "name": "فرشید", "spouse": "غزل", "number": "09126802475" },
-                    { "name": "نرگس", "spouse": "فیروز", "number": "09186608462", "children": [{ "name": "لیانا", "number": "" }, { "name": "الینا", "number": "" }] }, /* شماره برای لیانا و الینا وجود ندارد */
+                    { "name": "نرگس", "spouse": "فیروز", "number": "09186608462", "children": [{ "name": "لیانا", "number": "" }, { "name": "الینا", "number": "" }] },
                     { "name": "شادی", "number": "09378194412" }
                 ]
             },
             {
                 "name": "صبیعه",
                 "spouse": "عبدالله",
-                "number": "", /* شماره برای صبیعه و عبدالله وجود ندارد */
+                "number": "",
                 "children": [
-                    { "name": "اشرف", "spouse": "کوهستان", "number": "" , "children": [{ "name": "زریان", "number": "" }] }, /* شماره برای اشرف، کوهستان و زریان وجود ندارد */
-                    { "name": "ارشد", "spouse": "لطیفه", "number": "", "children": [{ "name": "نفس", "number": "" }] }, /* شماره برای ارشد، لطیفه و نفس وجود ندارد */
-                    { "name": "جمال", "spouse": "فاطمه", "number": "", "children": [{ "name": "فرنوش", "number": "" }, { "name": "عاطفه", "number": "" }, { "name": "پیشوا", "number": "" }, { "name": "محمد", "number": "" }] }, /* شماره برای جمال، فاطمه، فرنوش، عاطفه، پیشوا و محمد وجود ندارد */
-                    { "name": "فواد", "spouse": "اسرین", "number": "", "children": [{ "name": "آریان", "number": "" }, { "name": "آراد", "number": "" }] }, /* شماره برای فواد، اسرین، آریان و آراد وجود ندارد */
-                    { "name": "فرناز", "spouse": "فرید", "number": "", "children": [{ "name": "آیهان", "number": "" }, { "name": "آیسان", "number": "" }] }, /* شماره برای فرناز، فرید، آیهان و آیسان وجود ندارد */
-                    { "name": "عزیزه", "spouse": "اشرف", "number": "", "children": [{ "name": "انیس", "number": "" }, { "name": "حدیث", "number": "" }, { "name": "اشکان", "number": "" }] }, /* شماره برای عزیزه، اشرف، انیس، حدیث و اشکان وجود ندارد */
-                    { "name": "فانوزه", "spouse": "جمال", "number": "", "children": [{ "name": "پیام", "number": "" }, { "name": "پوریا", "spouse": "حمیرا", "number": "", "children": [{ "name": "دلوین", "number": "" }] }, { "name": "فادیه", "number": "" }] } /* شماره برای فانوزه، جمال، پیام، پوریا، حمیرا، دلوین و فادیه وجود ندارد */
+                    { "name": "اشرف", "spouse": "کوهستان", "number": "" , "children": [{ "name": "زریان", "number": "" }] },
+                    { "name": "ارشد", "spouse": "لطیفه", "number": "", "children": [{ "name": "نفس", "number": "" }] },
+                    { "name": "جمال", "spouse": "فاطمه", "number": "", "children": [{ "name": "فرنوش", "number": "" }, { "name": "عاطفه", "number": "" }, { "name": "پیشوا", "number": "" }, { "name": "محمد", "number": "" }] },
+                    { "name": "فواد", "spouse": "اسرین", "number": "", "children": [{ "name": "آریان", "number": "" }, { "name": "آراد", "number": "" }] },
+                    { "name": "فرناز", "spouse": "فرید", "number": "", "children": [{ "name": "آیهان", "number": "" }, { "name": "آیسان", "number": "" }] },
+                    { "name": "عزیزه", "spouse": "اشرف", "number": "", "children": [{ "name": "انیس", "number": "" }, { "name": "حدیث", "number": "" }, { "name": "اشکان", "number": "" }] },
+                    { "name": "فانوزه", "spouse": "جمال", "number": "", "children": [{ "name": "پیام", "number": "" }, { "name": "پوریا", "spouse": "حمیرا", "number": "", "children": [{ "name": "دلوین", "number": "" }] }, { "name": "فادیه", "number": "" }] }
                 ]
             },
             {
                 "name": "هاجر",
                 "spouse": "مهدی",
-                "number": "", /* شماره برای هاجر و مهدی وجود ندارد */
+                "number": "",
                 "children": [
                     { "name": "پریسا", "spouse": "سیامک", "number": "09189737254" },
                     { "name": "اسرا", "number": "09903899299" },
-                    { "name": "نوید", "number": "" } /* شماره برای نوید وجود ندارد */
+                    { "name": "نوید", "number": "" }
                 ]
             }
         ]
@@ -131,14 +131,14 @@
         .attr("class", "spouse-node")
         .attr("transform", "translate(30, -30)")
         .append("circle")
-        .attr("r", 35); /* **بزرگتر کردن دایره همسران** */
+        .attr("r", 35);
 
     node.append("circle")
-        .attr("r", 35); /* **بزرگتر کردن دایره اصلی** */
+        .attr("r", 35);
 
     node.append("text")
         .attr("dy", "0.31em")
-        .attr("x", function(d) { return d.children ? -38 : 38; }) /* تنظیم موقعیت متن نام */
+        .attr("x", function(d) { return d.children ? -38 : 38; })
         .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
         .text(function(d) { return d.data.name; });
 
@@ -147,7 +147,7 @@
         .select(".spouse-node")
         .append("text")
         .attr("dy", "0.31em")
-        .attr("x", 38) /* تنظیم موقعیت متن همسران */
+        .attr("x", 38)
         .style("text-anchor", "start")
         .text(function(d) { return d.data.spouse; });
 
@@ -156,7 +156,7 @@
         .attr("class", "number-text")
         .attr("dy", "0.35em")
         .attr("text-anchor", "middle")
-        .style("font-size", "10px") /* **بسیار کوچکتر کردن فونت شماره** */
+        .style("font-size", "10px")
         .text(function(d) { return d.data.number; });
 
     // اضافه کردن خط اتصال بین همسران و فرزندان
