@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<svg width="2000" height="1500"></svg>
+<svg width="2500" height="2000"></svg>
 
 <script>
     var svg = d3.select("svg"),
@@ -29,9 +29,9 @@
         height = +svg.attr("height");
 
     var tree = d3.tree()
-        .size([height, width - 400]); // افزایش فاصله
+        .size([height, width - 500]); // افزایش فاصله
 
-    var g = svg.append("g").attr("transform", "translate(200,0)"); // افزایش فاصله
+    var g = svg.append("g").attr("transform", "translate(250,0)"); // افزایش فاصله
 
     var familyData = {
         "name": "عبدالله",
@@ -122,7 +122,7 @@
     // اضافه کردن دایره برای همسران
     node.filter(function(d) { return d.data.spouse; })
         .append("g")
-        .attr("transform", "translate(30, -30)") // تنظیم موقعیت همسر
+        .attr("transform", "translate(40, -40)") // تنظیم موقعیت همسر
         .append("circle")
         .attr("r", 10);
 
@@ -138,7 +138,7 @@
     // اضافه کردن متن برای همسران
     node.filter(function(d) { return d.data.spouse; })
         .append("g")
-        .attr("transform", "translate(30, -30)") // تنظیم موقعیت همسر
+        .attr("transform", "translate(40, -40)") // تنظیم موقعیت همسر
         .append("text")
         .attr("dy", "0.31em")
         .attr("x", 13)
@@ -148,7 +148,7 @@
     // اضافه کردن خط اتصال بین همسران و فرزندان
     node.filter(function(d) { return d.data.spouse; })
         .append("line")
-        .attr("x1", 30)
+        .attr("x1", 40)
         .attr("y1", 0)
         .attr("x2", 0)
         .attr("y2", 0)
@@ -161,10 +161,10 @@
             if (d.parent && d.parent.data.spouse) {
                 d3.select(this.parentNode)
                     .append("line")
-                    .attr("x1", 30)
-                    .attr("y1", -30)
-                    .attr("x2", -30)
-                    .attr("y2", -30)
+                    .attr("x1", 40)
+                    .attr("y1", -40)
+                    .attr("x2", -40)
+                    .attr("y2", -40)
                     .attr("stroke", "#ccc")
                     .attr("stroke-width", 1.5);
             }
