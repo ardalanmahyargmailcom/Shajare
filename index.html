@@ -141,15 +141,15 @@
         .style("text-anchor", "start")
         .text(function(d) { return d.data.spouse; });
 
-    // اضافه کردن خط اتصال بین همسران و فرزندان
+    // اضافه کردن خط اتصال بین همسران و فرزندان - **تغییر در اینجا**
     node.filter(function(d) { return d.data.spouse; })
         .append("line")
         .attr("x1", 60)
         .attr("y1", 0)
         .attr("x2", 0)
         .attr("y2", 0)
-        .attr("stroke", "#ccc")
-        .attr("stroke-width", 1.5);
+        .attr("stroke", "steelblue") // **رنگ خط به آبی تغییر کرد**
+        .attr("stroke-width", 3); // **ضخامت خط بیشتر شد**
 
     // اضافه کردن خط اتصال بین همسران
     node.filter(function(d) { return d.data.spouse; })
